@@ -4,9 +4,7 @@
   "description": "An object translator",
   "main": "lib/object-translator.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "pretest": "webpack --config webpack.test.js",
-    "test": "ava ./dist/tests.js"
+    "build": "webpack --config webpack.config.js"
   },
   "repository": "git+https://github.com/nutshell-lab/object-translator",
   "keywords": [
