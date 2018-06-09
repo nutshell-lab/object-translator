@@ -1,0 +1,31 @@
+{
+  "name": "@nutshelllab/object-translator",
+  "version": "0.0.1",
+  "description": "An object translator",
+  "main": "lib/object-translator.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "pretest": "webpack --config webpack.test.js",
+    "test": "ava ./dist/tests.js"
+  },
+  "repository": "git+https://github.com/nutshell-lab/object-translator",
+  "keywords": [
+    "translator"
+  ],
+  "author": "Nutshell",
+  "license": "GNU GENERAL PUBLIC LICENSE Version 3",
+  "bugs": {
+    "url": "https://github.com/nutshell-lab/object-translator/issues"
+  },
+  "homepage": "https://github.com/nutshell-lab/object-translator#readme",
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.8.2",
+    "webpack-cli": "^2.1.3",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "private": false
+}
