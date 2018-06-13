@@ -1,7 +1,10 @@
 export default class Translator {
   constructor(dictionnary, aliases) {
     this.dictionnary = dictionnary || {}
-    this.aliases = aliases || {}
+    this.aliases = {
+      ...this._computeAliases(dictionnary),
+      ...aliases
+    }
   }
 
   run(type, arg) {
@@ -9,14 +12,20 @@ export default class Translator {
   }
 
   _translate(type, arg, value, tracked = true) {
-    if (value) value = this._translate(this._computeType(type, arg), value, undefined, false)
+    if (value)
+      value = this._translate(
+        this._computeType(type, arg),
+        value,
+        undefined,
+        false
+      )
 
     if (Array.isArray(arg)) {
       return arg.map(x => this._translate(type, x))
     } else if (typeof arg === 'object') {
       return Object.keys(arg).reduce((acc, key) => {
         return { ...acc, ...this._translate(type, key, arg[key]) }
-      }, {});
+      }, {})
     } else {
       const translated = tracked ? this._findWordTranslation(type, arg) : arg
       if (value === undefined) return translated
@@ -35,8 +44,16 @@ export default class Translator {
       if (this.aliases[key].includes(field)) {
         type = key
         return true
-      } return false
+      }
+      return false
     })
     return type
+  }
+
+  _computeAliases(dictionnary) {
+    return Object.keys(dictionnary).reduce((acc, alias) => {
+      acc[alias] = [alias]
+      return acc
+    }, {})
   }
 }
