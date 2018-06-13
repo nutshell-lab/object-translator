@@ -1,6 +1,6 @@
 {
   "name": "@nutshelllab/object-translator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An object translator",
   "main": "lib/object-translator.js",
   "scripts": {
