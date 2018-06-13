@@ -9,7 +9,7 @@ export default class Translator {
   }
 
   _translate(type, arg, value, tracked = true) {
-    if (value) value = this._translate(this._computeType(type, arg), value, null, false)
+    if (value) value = this._translate(this._computeType(type, arg), value, undefined, false)
 
     if (Array.isArray(arg)) {
       return arg.map(x => this._translate(type, x))
@@ -19,7 +19,7 @@ export default class Translator {
       }, {});
     } else {
       const translated = tracked ? this._findWordTranslation(type, arg) : arg
-      if (!value) return translated
+      if (value === undefined) return translated
       return { [translated]: value }
     }
   }
