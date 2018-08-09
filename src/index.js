@@ -1,14 +1,29 @@
 export default class Translator {
-  constructor(dictionnary, aliases) {
+  /*
+    options {
+      delete: Boolean
+    }
+  */
+  constructor(dictionnary, aliases, options = {}) {
     this.dictionnary = dictionnary || {}
     this.aliases = {
       ...this._computeAliases(dictionnary),
       ...aliases
     }
+    this.options = options
   }
 
-  run(type, arg) {
+  run(type, arg, options) {
+    this.setOptions(options)
     return this._translate(type, arg)
+  }
+
+  setOptions(options) {
+    if (!options) return
+    this.options = {
+      ...this.options,
+      ...options
+    }
   }
 
   _translate(type, arg, value, tracked = true) {
@@ -28,7 +43,7 @@ export default class Translator {
       }, {})
     } else {
       const translated = tracked ? this._findWordTranslation(type, arg) : arg
-      if (value === undefined) return translated
+      if (value === undefined || !translated) return translated
       return { [translated]: value }
     }
   }
@@ -36,7 +51,7 @@ export default class Translator {
   _findWordTranslation(type, word) {
     if (!this.dictionnary[type]) return word
     const translated = this.dictionnary[type][word]
-    return translated || word
+    return this.options.delete ? translated : translated || word
   }
 
   _computeType(type, field) {
