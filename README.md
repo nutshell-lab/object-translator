@@ -108,3 +108,7 @@ const object = {
 }
 ```
 
+
+## License
+
+MIT © [Nutshell](https://nutshell-lab.com)
