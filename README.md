@@ -1,13 +1,14 @@
-# object translator
+# object-translator
 
-An object translator
+> Just a tool to translate objects keys
 
 ## Install
 
-> adding `object-translator` to package.json
-`yarn add @nutshelllab/object-translator`
+```
+$ yarn add @nutshelllab/object-translator
+```
 
-## Utilisation
+## Usage
 
 ### import
 `import Translator from '@nutshelllab/object-translator'`
