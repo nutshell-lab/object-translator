@@ -2,6 +2,8 @@
 
 > Just a tool to translate objects keys
 
+The typical use-case is to query a forgeign API don't use English as work language...
+
 ## Install
 
 ```
